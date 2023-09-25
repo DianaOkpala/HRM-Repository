@@ -1,0 +1,64 @@
+test:
+  name: hrm-contract-benchmark
+  description: HRM performance benchmark 
+  workers:
+    type: local
+    number: 5
+  rounds:
+    - label: Payroll Records 
+      description: Create payroll benchmark
+      txNumber: 5
+      rateControl:
+        { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+      workload:
+        module: workload/createPayroll.js
+        arguments:
+          contractId: basic
+    - label: Employee Records 
+      description: Create asset benchmark
+      txNumber: 5
+      rateControl:
+        { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+      workload:
+        module: workload/createAsset.js
+        arguments:
+          contractId: basic
+    - label: LeaveApplicationRecords
+      description: Create leave benchmark
+      txNumber: 5
+      rateControl:
+        { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+      workload:
+        module: workload/createLeave.js
+        arguments:
+          contractId: basic
+    - label: Exit and Retirement Requests
+      description: Create exit retirement benchmark
+      txNumber: 5
+      rateControl:
+        { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+      workload:
+        module: workload/createExitRetirement.js
+        arguments:
+          contractId: basic
+    - label: Recruitment Records 
+      description: Create exit retirement benchmark
+      txNumber: 5
+      rateControl:
+        { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+      workload:
+        module: workload/createRecruitment.js
+        arguments:
+          contractId: basic
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 4
+        containers:
+          [
+            "peer0.org1.example.com",
+            "peer0.org2.example.com",
+            "orderer.example.com",
+          ]

@@ -1,0 +1,44 @@
+name: Caliper test
+version: "2.0.0"
+
+caliper:
+  blockchain: fabric
+  sutOptions:
+    mutualTls: true
+
+channels:
+  - channelName: olchannel
+    contracts:
+      - id: basic
+
+organizations:
+  - mspid: Org1MSP
+    identities:
+      certificates:
+        - name: "User1"
+          clientPrivateKey:
+            pem: |-
+              -----BEGIN PRIVATE KEY-----
+              MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgA0fhlJd2CxAkr6Xy
+              YdZd7rLAXfTE0rCURhIsbqgwexShRANCAARPlUxbJLJFAfm7Eeiy2BeLAbE9oK+c
+              xG+903vgxn+xEGSZz8nKCML+dQHDXISLk6lCM/rCstwwImkZNV5L5Wlw
+              -----END PRIVATE KEY-----
+          clientSignedCert:
+            pem: |-
+              -----BEGIN CERTIFICATE-----
+              MIICKTCCAdCgAwIBAgIQbQdrrchdB0MdImGTSlKwJzAKBggqhkjOPQQDAjBzMQsw
+              CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+              YW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEcMBoGA1UEAxMTY2Eu
+              b3JnMS5leGFtcGxlLmNvbTAeFw0yMzA5MjAxODQyMDBaFw0zMzA5MTcxODQyMDBa
+              MGwxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+              YW4gRnJhbmNpc2NvMQ8wDQYDVQQLEwZjbGllbnQxHzAdBgNVBAMMFlVzZXIxQG9y
+              ZzEuZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARPlUxbJLJF
+              Afm7Eeiy2BeLAbE9oK+cxG+903vgxn+xEGSZz8nKCML+dQHDXISLk6lCM/rCstww
+              ImkZNV5L5Wlwo00wSzAOBgNVHQ8BAf8EBAMCB4AwDAYDVR0TAQH/BAIwADArBgNV
+              HSMEJDAigCBFCUmR9/5fRKt3veseaIz5I7P3RV01KZGK4PYLWqsZwTAKBggqhkjO
+              PQQDAgNHADBEAiAm/aDUk/6iMw+mKnXV2wWijiZZZiOVaQwAmcxzXolyTwIgJ+9u
+              g50Xct/GsxsocQ8V9zW1um3g0RlQH+JHVzRLB6Y= 
+              -----END CERTIFICATE-----
+    connectionProfile:
+      path: "../test-network/organizations/peerOrganizations/org1.example.com/connection-org1.yaml"
+      discover: true
